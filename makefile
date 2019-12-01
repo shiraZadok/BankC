@@ -3,10 +3,10 @@ AR=ar
 MYBANKO= myBank.o
 FLAG= -Wall -g
 
-all: libmyBank.a main.o
-	$(CC) $(FLAG) -o all main.o ./libmyBank.a
-libmyBank.a : myBank.o
-	$(CC) -shared -o libmyBank.a myBank.o
+all: libmyBank.so main.o
+	$(CC) $(FLAG) -o all main.o ./libmyBank.so
+libmyBank.so : myBank.o
+	$(CC) -shared -o libmyBank.so myBank.o
 myBank.o : myBank.c myBank.h
 	$(CC) $(FLAG) -fPIC -c myBank.c
 main.o : main.c myBank.h
@@ -14,4 +14,4 @@ main.o : main.c myBank.h
 
 .PHONY: clean all
 clean:
-	rm -f *.o *.a all
+	rm -f *.o *.so all
